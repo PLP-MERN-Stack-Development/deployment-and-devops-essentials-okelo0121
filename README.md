@@ -2,11 +2,6 @@
 
 This is a full MERN stack Todo application demonstrating deployment, CI/CD pipelines, and monitoring setup.
 
-## 🚀 Live Demo
-
-- **Frontend**: [https://your-frontend-url.vercel.app](https://your-frontend-url.vercel.app)
-- **Backend API**: [https://your-backend-url.onrender.com](https://your-backend-url.onrender.com)
-- **Health Check**: [https://your-backend-url.onrender.com/health](https://your-backend-url.onrender.com/health)
 
 ## 📋 Features
 
