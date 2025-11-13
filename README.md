@@ -1,77 +1,163 @@
-# Deployment and DevOps for MERN Applications
+# MERN Todo App - Deployment and DevOps
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+This is a full MERN stack Todo application demonstrating deployment, CI/CD pipelines, and monitoring setup.
 
-## Assignment Overview
+## 🚀 Live Demo
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+- **Frontend**: [https://your-frontend-url.vercel.app](https://your-frontend-url.vercel.app)
+- **Backend API**: [https://your-backend-url.onrender.com](https://your-backend-url.onrender.com)
+- **Health Check**: [https://your-backend-url.onrender.com/health](https://your-backend-url.onrender.com/health)
 
-## Getting Started
+## 📋 Features
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+- ✅ Create, read, update, and delete todos
+- ✅ Mark todos as complete/incomplete
+- ✅ Responsive React frontend
+- ✅ Express.js backend with MongoDB
+- ✅ Production-ready with security headers
+- ✅ Health check endpoint for monitoring
+- ✅ CI/CD with GitHub Actions
+- ✅ Deployed on Render (backend) and Vercel (frontend)
 
-## Files Included
+## 🛠️ Tech Stack
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+- **Frontend**: React 18, CSS3
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB Atlas
+- **Deployment**: Render (backend), Vercel (frontend)
+- **CI/CD**: GitHub Actions
 
-## Requirements
+## 📁 Project Structure
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+```
+mern-todo-app/
+├── backend/
+│   ├── models/
+│   │   └── Todo.js
+│   ├── routes/
+│   │   └── todos.js
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── App.css
+│   │   ├── TodoList.js
+│   │   └── TodoForm.js
+│   └── package.json
+├── .github/
+│   └── workflows/
+│       ├── backend-ci.yml
+│       ├── frontend-ci.yml
+│       ├── backend-cd.yml
+│       └── frontend-cd.yml
+├── .env.example
+├── README.md
+└── TODO.md
+```
 
-## Deployment Platforms
+## 🚀 Deployment Instructions
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+### Prerequisites
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+1. Create accounts on:
+   - [GitHub](https://github.com)
+   - [MongoDB Atlas](https://www.mongodb.com/atlas)
+   - [Render](https://render.com)
+   - [Vercel](https://vercel.com)
 
-## CI/CD Pipeline
+2. Install Node.js (v18+) and npm
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+### 1. Set up MongoDB Atlas
 
-## Submission
+1. Create a new cluster in MongoDB Atlas
+2. Create a database user with read/write permissions
+3. Whitelist your IP (or 0.0.0.0/0 for all)
+4. Get your connection string
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### 2. Deploy Backend to Render
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+1. Connect your GitHub repository to Render
+2. Create a new Web Service
+3. Set build command: `npm install`
+4. Set start command: `npm start`
+5. Add environment variables:
+   - `MONGODB_URI`: Your MongoDB connection string
+   - `PORT`: 10000 (or Render's default)
+6. Deploy
 
-## Resources
+### 3. Deploy Frontend to Vercel
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+1. Connect your GitHub repository to Vercel
+2. Import the `frontend` folder as the root directory
+3. Add environment variable:
+   - `REACT_APP_API_URL`: Your Render backend URL + `/api`
+4. Deploy
+
+### 4. Configure CI/CD
+
+The GitHub Actions workflows are already set up. Add these secrets to your repository:
+
+**For Backend CD:**
+- `RENDER_API_KEY`: Your Render API key
+- `RENDER_SERVICE_ID`: Your Render service ID
+
+**For Frontend CD:**
+- `VERCEL_TOKEN`: Your Vercel token
+
+## 🔧 Local Development
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Create a `.env` file in the backend folder with your MongoDB URI.
+
+## 📊 API Endpoints
+
+- `GET /health` - Health check
+- `GET /api/todos` - Get all todos
+- `GET /api/todos/:id` - Get single todo
+- `POST /api/todos` - Create new todo
+- `PUT /api/todos/:id` - Update todo
+- `DELETE /api/todos/:id` - Delete todo
+
+## 🔍 Monitoring
+
+- Health check endpoint: `/health`
+- Server logs available in Render dashboard
+- Frontend performance monitoring via Vercel Analytics
+
+## 📸 Screenshots
+
+### CI/CD Pipeline
+![CI/CD Pipeline](https://via.placeholder.com/800x400?text=CI%2FCD+Pipeline+Screenshot)
+
+### Deployed Application
+![Todo App](https://via.placeholder.com/800x400?text=Todo+App+Screenshot)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
